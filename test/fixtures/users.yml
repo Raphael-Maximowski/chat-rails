@@ -4,6 +4,16 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :bigint           not null, primary key
+#  email      :string(255)      not null
+#  name       :string(255)      not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 one: {}
 # column: value
 #

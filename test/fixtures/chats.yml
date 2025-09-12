@@ -4,6 +4,26 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+# == Schema Information
+#
+# Table name: chats
+#
+#  id             :bigint           not null, primary key
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  initializer_id :bigint           not null
+#  receptor_id    :bigint           not null
+#
+# Indexes
+#
+#  fk_chat_initializer_id  (initializer_id)
+#  fk_chat_receptor_id     (receptor_id)
+#
+# Foreign Keys
+#
+#  fk_chat_initializer_id  (initializer_id => users.id)
+#  fk_chat_receptor_id     (receptor_id => users.id)
+#
 one: {}
 # column: value
 #
