@@ -21,8 +21,13 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Archive < ApplicationRecord
-    
-
     belongs_to :message
     belongs_to :user
+
+    validates :user, presence: true
+    validates :message, presence: true
+    validates :url, presence: true, length: { maximum: 255 }
+    validates :type, presence: true, inclusion: {
+        in: ['file', 'audio', 'video', 'image'],
+    }
 end
