@@ -3,13 +3,13 @@
 # Table name: messages
 #
 #  id           :bigint           not null, primary key
-#  text_message :text(65535)
+#  text_message :text(65535)               Optional
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  answer_id    :bigint
-#  archive_id   :bigint
-#  chat_id      :bigint           not null
-#  user_id      :bigint           not null
+#  answer_id    :bigint                    Optional
+#  archive_id   :bigint                    Optional
+#  chat_id      :bigint           not null Required In Create
+#  user_id      :bigint           not null Required In Both
 #
 # Indexes
 #

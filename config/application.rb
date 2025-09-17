@@ -15,17 +15,5 @@ module RubyOnRails
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.  
     config.autoload_lib(ignore: %w[assets tasks])
-    
-    # Adicione apenas o diretório principal, o Rails cuidará dos subdiretórios
-    config.autoload_paths << "#{config.root}/app/validators"
-    config.autoload_paths << "#{config.root}/app/repositories"
-
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
   end
 end
