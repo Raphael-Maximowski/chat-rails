@@ -13,8 +13,12 @@ module RubyOnRails
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
-    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.  
     config.autoload_lib(ignore: %w[assets tasks])
+    
+    # Adicione apenas o diretório principal, o Rails cuidará dos subdiretórios
+    config.autoload_paths << "#{config.root}/app/validators"
+    config.autoload_paths << "#{config.root}/app/repositories"
 
     # Configuration for the application, engines, and railties goes here.
     #

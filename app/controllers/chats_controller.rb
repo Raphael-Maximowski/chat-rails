@@ -1,32 +1,35 @@
 class ChatsController < ApplicationController
+    before_action :set_chat, only: [:show]
+
     def index
-        chats = Chat.all()
+        chats = Chat.all
         render json: chats
-    end
+    end 
 
     def show
-        chat = Chat.find(params[:id])
-        render json: chat
-    end
-
-    def destroy
-        chat = Chat.find(params[:id])
-        chat.delete()
-    end
-
-    def chat_params
-        params.permit(:initializer_id, :receptor_id)
+        render json: @chat
     end
 
     def create
-        chat = Chat.new(chat_params)
+        validation = ChatValidator.validate(chat_params)
 
-        if chat.save()
-            render json: chat
+        if validation.success?
+            @chat = Chat.create(validation.to_h)
+            render json: @chat, status: :created
         else
             render json: {
-                errors: chat.errors.full_messages
+                errors: validation.errors.to_h
             }, status: :unprocessable_entity
         end
+    end
+
+    private
+
+    def set_chat
+        @chat = Chat.find(params[:id])
+    end 
+
+    def chat_params
+        params.permit(:initializer_id, :receptor_id).to_h
     end
 end

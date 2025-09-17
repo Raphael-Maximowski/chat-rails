@@ -9,9 +9,6 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
-    validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }, length: { maximum: 100 }
-    validates :name, presence: true, length: { maximum: 50 }
-
     has_many :initiated_chats, class_name: 'Chat', foreign_key: 'initializer_id'
     has_many :received_chats, class_name: 'Chat', foreign_key: 'receptor_id'
     

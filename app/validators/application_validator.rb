@@ -1,0 +1,3 @@
+
+class ApplicationValidator
+end

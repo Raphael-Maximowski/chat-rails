@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem 'dry-validation'
+
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'mysql2' 
