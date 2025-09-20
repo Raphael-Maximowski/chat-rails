@@ -8,6 +8,6 @@ class UserRepository
     end
 
     def user_exists?(user_id)
-    User.where(id: user_id).exists?
+        User.where(id: user_id).exists?
     end
 end

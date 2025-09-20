@@ -23,7 +23,7 @@ module Validators
                 else
                     if user_repository.email_exists?(value)
                         key.failure('has already been taken')    
-                    end
+                    end 
                 end
             end
         end
