@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     resources :users
     resources :archives
     resources :chats
+    resources :messages
+
   end
 end
