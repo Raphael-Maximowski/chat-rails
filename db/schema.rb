@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_11_214744) do
-  create_table "archives", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "url", null: false
-    t.string "type", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "message_id"
-    t.bigint "user_id"
-    t.index ["message_id"], name: "index_archives_on_message_id"
-    t.index ["user_id"], name: "index_archives_on_user_id"
-  end
-
+ActiveRecord::Schema[8.0].define(version: 2025_09_11_212515) do
   create_table "chats", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "initializer_id", null: false
     t.bigint "receptor_id", null: false
@@ -33,14 +22,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_214744) do
 
   create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "text_message"
-    t.bigint "archive_id"
     t.bigint "answer_id"
     t.bigint "chat_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "fk_message_answer_id"
-    t.index ["archive_id"], name: "fk_message_archive_id"
     t.index ["chat_id"], name: "fk_message_chat_id"
     t.index ["user_id"], name: "fk_message_user_id"
   end
@@ -52,11 +39,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_214744) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "archives", "messages"
-  add_foreign_key "archives", "users"
   add_foreign_key "chats", "users", column: "initializer_id", name: "fk_chat_initializer_id"
   add_foreign_key "chats", "users", column: "receptor_id", name: "fk_chat_receptor_id"
-  add_foreign_key "messages", "archives", name: "fk_message_archive_id"
   add_foreign_key "messages", "chats", name: "fk_message_chat_id"
   add_foreign_key "messages", "messages", column: "answer_id", name: "fk_message_answer_id"
   add_foreign_key "messages", "users", name: "fk_message_user_id"
