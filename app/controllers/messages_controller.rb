@@ -28,7 +28,13 @@ class MessagesController < ApplicationController
 
     def create
         if validate_create_params
-            @message = Message.create(@validation.to_h)
+            @message = Message.new(@validation.to_h.except(:file_message))
+            
+            if @validation[:file_message].present?
+                @message.message_file.attach(@validation[:file_message])
+            end
+
+            @message.save
             render json: @message, status: :created
         else
             render_validation_errors
@@ -44,11 +50,11 @@ class MessagesController < ApplicationController
     end
 
     def message_params_create
-        params.permit(:text_message, :answer_id, :chat_id, :user_id).to_h
+        params.permit(:text_message, :answer_id, :chat_id, :user_id, :file_message).to_h
     end
 
     def message_params_update
-        params.permit(:text_message, :user_id, :chat_id).to_h
+        params.permit(:text_message, :user_id, :chat_id, :file_message).to_h
     end
 
     def validate_create_params

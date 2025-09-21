@@ -10,6 +10,7 @@ class MessageBaseSchema < Dry::Validation::Contract
         required(:user_id).filled(:integer, gt?: 0)
         required(:chat_id).filled(:integer, gt?: 0)
         optional(:text_message).filled(:string, max_size?: MAX_TEXT_SIZE, min_size?: MIN_TEXT_SIZE)
+        optional(:file_message).value(:any)
     end
 
     rule(:user_id) do
@@ -25,9 +26,5 @@ class MessageBaseSchema < Dry::Validation::Contract
             values[:chat_id], 
             values[:user_id]
         )
-    end
-
-    rule(:text_message) do
-        key.failure('insert a message') if !value 
     end
 end
