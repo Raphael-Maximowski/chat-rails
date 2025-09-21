@@ -23,8 +23,10 @@
 #  fk_message_user_id    (user_id => users.id)
 #
 class Message < ApplicationRecord
-    has_one :message
+    belongs_to :answer, class_name: 'Message', optional: true, foreign_key: 'answer_id'
+    has_many :replies, class_name: 'Message', foreign_key: 'answer_id'
     
+    has_one_attached :message_file
     belongs_to :user
     belongs_to :chat
 end

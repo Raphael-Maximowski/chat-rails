@@ -8,6 +8,14 @@ class MessageUpdateSchema < MessageBaseSchema
         base.failure('invalid message') unless message_repository.message_exists?(message_id)
     end
 
+    rule(:file_message) do
+        key.failure('cannot update a file') unless key
+    end
+
+    rule(:text_message) do
+        key.failure('insert a text message to update') unless value
+    end
+
     rule(:chat_id) do
         key.failure('cannot update message from another chat') unless message_repository.message_belongs_to_chat?(message_id, value)
     end
