@@ -9,7 +9,6 @@ class MessageBaseSchema < Dry::Validation::Contract
     params do
         required(:user_id).filled(:integer, gt?: 0)
         required(:chat_id).filled(:integer, gt?: 0)
-        optional(:archive_id).filled(:integer, gt?: 0)
         optional(:text_message).filled(:string, max_size?: MAX_TEXT_SIZE, min_size?: MIN_TEXT_SIZE)
     end
 
@@ -28,7 +27,7 @@ class MessageBaseSchema < Dry::Validation::Contract
         )
     end
 
-    rule(:text_message, :archive_id) do
-        key.failure('insert a message or archive') if !values[:text_message] && !values[:archive_id]
+    rule(:text_message) do
+        key.failure('insert a message') if !value 
     end
 end

@@ -44,11 +44,11 @@ class MessagesController < ApplicationController
     end
 
     def message_params_create
-        params.permit(:text_message, :answer_id, :chat_id, :user_id, :archive_id).to_h
+        params.permit(:text_message, :answer_id, :chat_id, :user_id).to_h
     end
 
     def message_params_update
-        params.permit(:text_message, :user_id, :archive_id, :chat_id).to_h
+        params.permit(:text_message, :user_id, :chat_id).to_h
     end
 
     def validate_create_params
